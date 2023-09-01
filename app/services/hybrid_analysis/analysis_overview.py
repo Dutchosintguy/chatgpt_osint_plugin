@@ -22,8 +22,6 @@ def analysis_overview(sha256: str):
         """
         response = requests.get(f"{instance.API_URL}overview/{sha256}", headers=instance.auth_headers)
         
-        what = f"{instance.API_URL}/overview/{sha256}"
-
         if response.status_code == 200:
             data = response.json()
             return data
