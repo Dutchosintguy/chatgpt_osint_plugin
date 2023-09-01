@@ -49,12 +49,14 @@ async def analysis_overview(sha256: str) -> dict:
     response =  ao.analysis_overview(sha256) 
     return response
 
-#@router.post("/memory-hex-dump", description="Get analysis details with a hex dump of a SHA256 file from Hybrid Analysis.")
+@router.post("/memory-hex-dump", description="Get analysis details with a hex dump of a SHA256 file from Hybrid Analysis.")
 
-#async def memory_hex_dump(sha256: str) -> dict:
+async def memory_hex_dump(sha256: str) -> dict:
 
     """
     Retrieve the hex dump of the memory for a given SHA256 file from the Hybrid Analysis database.
+
+    ***Note: This function requires a verified API key from Hybrid Analysis to work.
 
     Parameters:
     sha256 (str): The SHA256 hash to query.
@@ -67,15 +69,18 @@ async def analysis_overview(sha256: str) -> dict:
 
     """
 
-#   response =  mh.memory_hex_dump(sha256) 
-#   return response
+    response =  mh.memory_hex_dump(sha256) 
 
-#@router.post("/memory-strings-dump", description="Get strings extracted from memory a SHA256 file from Hybrid Analysis.")
+    return response
 
-#async def memory_strings_dump(sha256: str)-> dict:
+@router.post("/memory-strings-dump", description="Get strings extracted from memory a SHA256 file from Hybrid Analysis.")
+
+async def memory_strings_dump(sha256: str)-> dict:
 
     """
     Retrieve the strings extracted from the memory of a given SHA256 file from the Hybrid Analysis database.
+
+    ***Note: This function requires a verified API key from Hybrid Analysis to work.
 
     Parameters:
     sha256 (str): The SHA256 hash to query.
@@ -88,10 +93,10 @@ async def analysis_overview(sha256: str) -> dict:
 
     """
 
-#    response =  msd.memory_strings_dump(sha256) 
-#    return response
+    response =  msd.memory_strings_dump(sha256) 
+    return response
 
-@router.post("/report-summary", description="Get the report summary for a SHA256 file from Hybrid Analysis.")
+router.post("/report-summary", description="Get the report summary for a SHA256 file from Hybrid Analysis.")
 
 async def report_summary(sha256: str) -> dict:
     

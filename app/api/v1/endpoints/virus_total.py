@@ -4,6 +4,7 @@ import app.services.virus_total.get_ip_report as gir
 import app.services.virus_total.get_file_report as gfr
 import app.services.virus_total.get_domain_report as gdr
 import app.services.virus_total.get_file_behavior_summary as fbs
+
 router = APIRouter()
 
 @router.post("/get-ip-report", description="Get IP report from VirusTotal.")
