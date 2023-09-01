@@ -1,0 +1,27 @@
+[tool.poetry]
+name = "chatgpt-osint-plugin"
+version = "0.1.1"
+description = "A plugin for ChatGPT that allows users to query threat intelligence off OSINT sources."
+authors = ["Neil Finneran, 0xancillary"]
+readme = "README.md"
+packages = [{include = "app"}]
+
+[tool.poetry.dependencies]
+python = "^3.10"
+fastapi = "^0.92.0"
+uvicorn = "^0.20.0"
+openai = "^0.27.2"
+pyyaml = "^6.0"
+pydantic = "^1.10.5"
+tomli = "^2.0.1"
+requests = "^2.26.0"
+python-dotenv = "^1.0.0"
+tiktoken = "^0.4.0"
+
+[tool.poetry.scripts]
+start = "app.main:start"
+
+[app]
+title = "ChatGPT OSINT Plugin"
+port = 9001
+plugin_hostname = "http://localhost:9001"

@@ -1,0 +1,18 @@
+{
+    "schema_version": "v1",
+    "name_for_human": "ChatGPT OSINT Plugin",
+    "name_for_model": "OSINT",
+    "description_for_human": "A plugin for ChatGPT that allows users to query threat intelligence off OSINT sources.",
+    "description_for_model": "A plugin for ChatGPT that allows users to query threat intelligence off OSINT sources.",
+    "auth": {
+        "type": "none"
+    },
+    "api": {
+        "type": "openapi",
+        "url": "$PLUGIN_HOSTNAME/openapi.yaml",
+        "is_user_authenticated": false
+    },
+    "logo_url": "$PLUGIN_HOSTNAME/static/logo.png",
+    "contact_email": "",
+    "legal_info_url": "https://example.com/legal"
+}

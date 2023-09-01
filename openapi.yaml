@@ -1,0 +1,313 @@
+components:
+  schemas:
+    HTTPValidationError:
+      properties:
+        detail:
+          items:
+            $ref: '#/components/schemas/ValidationError'
+          title: Detail
+          type: array
+      title: HTTPValidationError
+      type: object
+    ValidationError:
+      properties:
+        loc:
+          items:
+            anyOf:
+            - type: string
+            - type: integer
+          title: Location
+          type: array
+        msg:
+          title: Message
+          type: string
+        type:
+          title: Error Type
+          type: string
+      required:
+      - loc
+      - msg
+      - type
+      title: ValidationError
+      type: object
+info:
+  description: A plugin for ChatGPT that allows users to query threat intelligence
+    off OSINT sources.
+  servers:
+  - http://localhost:9001
+  title: ChatGPT OSINT Plugin
+  version: 0.1.1
+openapi: 3.0.2
+paths:
+  /.well-known/ai-plugin.json:
+    get:
+      description: Serves the ai-plugin.json file to chatgpt.
+      operationId: get_ai_plugin__well_known_ai_plugin_json_get
+      responses:
+        '200':
+          content:
+            application/json:
+              schema: {}
+          description: Successful Response
+      summary: Get Ai Plugin
+  /api/v1/hybridanalysis/analysis-overview:
+    post:
+      description: Get analysis report of a SHA256 hash against Hybrid Analysis.
+      operationId: analysis_overview_api_v1_hybridanalysis_analysis_overview_post
+      parameters:
+      - in: query
+        name: sha256
+        required: true
+        schema:
+          title: Sha256
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                title: Response Analysis Overview Api V1 Hybridanalysis Analysis Overview
+                  Post
+                type: object
+          description: Successful Response
+        '422':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+          description: Validation Error
+      summary: Analysis Overview
+  /api/v1/hybridanalysis/report-summary:
+    post:
+      description: Get the report summary for a SHA256 file from Hybrid Analysis.
+      operationId: report_summary_api_v1_hybridanalysis_report_summary_post
+      parameters:
+      - in: query
+        name: sha256
+        required: true
+        schema:
+          title: Sha256
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                title: Response Report Summary Api V1 Hybridanalysis Report Summary
+                  Post
+                type: object
+          description: Successful Response
+        '422':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+          description: Validation Error
+      summary: Report Summary
+  /api/v1/hybridanalysis/search-hash:
+    post:
+      description: Query hash value against Hybrid Analysis.
+      operationId: search_hash_api_v1_hybridanalysis_search_hash_post
+      parameters:
+      - in: query
+        name: hash_value
+        required: true
+        schema:
+          title: Hash Value
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                title: Response Search Hash Api V1 Hybridanalysis Search Hash Post
+                type: object
+          description: Successful Response
+        '422':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+          description: Validation Error
+      summary: Search Hash
+  /api/v1/malwarebazaar/hash-query:
+    post:
+      description: Query hash for malware_bazaar
+      operationId: hash_query_api_v1_malwarebazaar_hash_query_post
+      parameters:
+      - in: query
+        name: hash_value
+        required: true
+        schema:
+          title: Hash Value
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                title: Response Hash Query Api V1 Malwarebazaar Hash Query Post
+                type: object
+          description: Successful Response
+        '422':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+          description: Validation Error
+      summary: Hash Query
+  /api/v1/malwarebazaar/search-tag:
+    post:
+      description: Query tag on malware_bazaar
+      operationId: search_tag_api_v1_malwarebazaar_search_tag_post
+      parameters:
+      - in: query
+        name: tag
+        required: true
+        schema:
+          title: Tag
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema: {}
+          description: Successful Response
+        '422':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+          description: Validation Error
+      summary: Search Tag
+  /api/v1/malwarebazaar/yara-query:
+    post:
+      description: Query YARA name for malware_bazaar
+      operationId: yara_query_api_v1_malwarebazaar_yara_query_post
+      parameters:
+      - in: query
+        name: yara_name
+        required: true
+        schema:
+          title: Yara Name
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema: {}
+          description: Successful Response
+        '422':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+          description: Validation Error
+      summary: Yara Query
+  /api/v1/virustotal/get-domain-report:
+    post:
+      description: Get domain report from VirusTotal.
+      operationId: get_domain_report_api_v1_virustotal_get_domain_report_post
+      parameters:
+      - in: query
+        name: tld
+        required: true
+        schema:
+          title: Tld
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                title: Response Get Domain Report Api V1 Virustotal Get Domain Report
+                  Post
+                type: object
+          description: Successful Response
+        '422':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+          description: Validation Error
+      summary: Get Domain Report
+  /api/v1/virustotal/get-file-behavior-summary:
+    post:
+      description: Get file behavior summary from VirusTotal.
+      operationId: get_file_behavior_summary_api_v1_virustotal_get_file_behavior_summary_post
+      parameters:
+      - in: query
+        name: hash_value
+        required: true
+        schema:
+          title: Hash Value
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                title: Response Get File Behavior Summary Api V1 Virustotal Get File
+                  Behavior Summary Post
+                type: object
+          description: Successful Response
+        '422':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+          description: Validation Error
+      summary: Get File Behavior Summary
+  /api/v1/virustotal/get-file-report:
+    post:
+      description: Get file report from VirusTotal using sha256, md5, or sha1 hashes.
+      operationId: get_file_report_api_v1_virustotal_get_file_report_post
+      parameters:
+      - in: query
+        name: id
+        required: true
+        schema:
+          title: Id
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                title: Response Get File Report Api V1 Virustotal Get File Report
+                  Post
+                type: object
+          description: Successful Response
+        '422':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+          description: Validation Error
+      summary: Get File Report
+  /api/v1/virustotal/get-ip-report:
+    post:
+      description: Get IP report from VirusTotal.
+      operationId: get_ip_report_api_v1_virustotal_get_ip_report_post
+      parameters:
+      - in: query
+        name: ip_address
+        required: true
+        schema:
+          title: Ip Address
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                title: Response Get Ip Report Api V1 Virustotal Get Ip Report Post
+                type: object
+          description: Successful Response
+        '422':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+          description: Validation Error
+      summary: Get Ip Report
