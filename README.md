@@ -32,7 +32,7 @@ HYBRID_ANALYSIS_URL = "https://www.hybrid-analysis.com/api/v2/"
 
 - Many endpoints with Hybrid Analysis that provide more technical details require a verified API key and will return errors if you do not have an upgraded api key.
 
-- OpenAI spec limits to 350 characters restricting the number of endpoints that can exist.
+- OpenAI spec limits to 350 lines restricting the number of endpoints that can exist.
 
 ## Demo
 
